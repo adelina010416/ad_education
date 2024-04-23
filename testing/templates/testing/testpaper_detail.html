@@ -1,0 +1,47 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<section class="text-start mt-4">
+    <div class="row">
+        <div class="col-9">
+            <h1 class="jumbotron-heading">{{ object.title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="jumbotron-heading">{{ object.description }}</h4>
+    </div>
+    <hr>
+    <div class="container mt-4">
+        <ol>
+            {% for question in object.question_set.all %}
+            <div class="row lead mb-4">
+                <div class="col-10">
+                    <li>{{ question.question_text }}</li>
+                </div>
+                {% if is_owner %}
+                <div class="col-2">
+                    <a href="{% url 'tests:question_update' question.pk %}"
+                       class="btn btn-outline-primary">
+                        Редактировать
+                    </a>
+                    <a href="{% url 'tests:question_delete' question.pk %}"
+                       class="btn btn-outline-danger mt-1">
+                        Удалить
+                    </a>
+                </div>
+                {% endif %}
+                <ul>
+                    {% for answer in question.answer_set.all %}
+                    <li>
+                        <div class="row lead ms-2">{{ answer.answer_text }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </ol>
+    </div>
+</section>
+
+{% endblock %}

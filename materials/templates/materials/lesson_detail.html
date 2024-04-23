@@ -1,0 +1,60 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<h1 class="jumbotron-heading">{{ lesson.title}}</h1>
+<p class="lead">{{ lesson.description }}</p>
+<section class="jumbotron text-center">
+    <p class="lead">{{ lesson.material }}</p>
+    {% for paragraph in file %}
+    <p class="lead">{{ paragraph }}</p>
+    {% endfor %}
+</section>
+{% if lesson.link_video %}
+<h3 class="jumbotron-heading mt-4">Видео:</h3>
+<div class="ratio ratio-21x9">
+  <iframe src="{{video_player}}" title="YouTube video" allowfullscreen></iframe>
+</div>
+<a href="{{lesson.link_video}}" class="mb-4">{{ lesson.link_video }}</a>
+{% endif %}
+<hr>
+<h3 class="jumbotron-heading">Комментарии:</h3>
+<div class="container mt-4">
+    {% for object in object_list %}
+    <div class="row">
+        <div class="col-9">
+            {% if object.user.first_name or object.user.last.name %}
+            <strong>{{ object.user.last_name }} {{ object.user.first_name }}</strong>
+            {% else %}
+            <strong>Аноним</strong>
+            {% endif %}
+        </div>
+        <div class="col-3">
+            <em class="text-secondary">{{ object.date }}</em>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ object.text }}
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            {% for field in form %}
+            <div class="form-group">
+                <div class="py-3">
+                    <strong>Ваш комментарий:</strong>
+                </div>
+                <div>{{field}}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="mt-3 mb-4 btn btn-outline-success">
+            Отправить
+        </button>
+    </form>
+</div>
+{% endblock %}

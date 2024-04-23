@@ -1,0 +1,30 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h2 class="display-4 mb-5">{{object.last_name}} {{object.first_name}}</h2>
+        </div>
+        <div class="col-3 mt-4">
+            <a href='{% url "users:profile_edit" %}' class="link-secondary px-2 me-2">
+                Редактировать профиль
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container text-start">
+    <div class="row justify-content-start">
+        <div class="col-4">
+            <img src="{% mediapath object.avatar %}" class="img-fluid float-start" alt="User avatar">
+        </div>
+        <div class="col-8">
+            <p>E-mail: {{ object.email | default_if_none:'не указан' }}</p>
+            <p>Телефон: {{ object.phone | default_if_none:'не указан' }}</p>
+            <p>Страна: {{ object.city | default_if_none:'не указана' }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

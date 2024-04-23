@@ -1,0 +1,49 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<section class="text-start mt-4">
+    <div class="row">
+        <div class="col-9">
+            <h1 class="jumbotron-heading">Ваш результат по тесту "{{ test.title }}"</h1>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="jumbotron-heading">{{ test.description }}</h4>
+    </div>
+    <hr>
+    <div class="container mt-4">
+        <ol>
+            {% for question in test.question_set.all %}
+            <div class="row lead mb-4">
+                <div class="col-10">
+                    <li>{{ question.question_text }}</li>
+                </div>
+                <ul>
+                    {% for i in answers %}
+                    {% if i.question_id == question.id %}
+                    <li>
+                        {% if i.user_answer and i.is_correct %}
+                        <strong class="text-success">{{ i.answer_text }}</strong>
+                        {% elif i.user_answer and not i.is_correct %}
+                        <strong class="text-danger">{{ i.answer_text }}</strong>
+                        {% else %}
+                        <div class="row lead ms-2">{{ i.answer_text }}</div>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </ol>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h3 class="jumbotron-heading">Ваш результат</h3>
+        </div>
+        <p class="lead">Процент правильных ответов: {{ result.percentage }}%</p>
+        <p class="lead">Результат сохранён в разделе "Профиль" > "Мои результаты"</p>
+    </div>
+</section>
+{% endblock %}

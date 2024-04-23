@@ -1,0 +1,78 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{% url 'material:my_themes' %}">
+            Мои темы
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{% url 'material:my_lessons' %}">
+            Мои уроки
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'tests:my_tests' %}">
+            Мои тесты
+        </a>
+    </li>
+</ul>
+<div class="col-3">
+    <a href="{% url 'tests:test_create' %}" class="btn btn-outline-primary btn-lg mt-4 mb-4">
+        Создать тест
+    </a>
+</div>
+<hr>
+{% if not object_list %}
+<p class="lead">У вас пока нет своих тестов, но вы можете их создать, нажав на кнопку выше.</p>
+{% else %}
+<table class="table table-success table-striped table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Тест</th>
+        <th scope="col">Тема</th>
+        <th scope="col">Предмет</th>
+        <th scope="col">Публикация</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+    <tr>
+        <td scope="row">
+            <a href="{% url 'tests:test_detail' object.pk %}"
+               class="lead nav-link">
+                {{ object.title }}
+            </a>
+        </td>
+        <td>
+            <p class="lead">{{ object.theme }}</p>
+        </td>
+        <td>
+            <p class="lead">{{ object.theme.subject }}</p>
+        </td>
+        <td>
+            {% if object.is_published %}
+            Опубликовано
+            {% else %}
+            На проверке
+            {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'tests:test_update' object.pk %}"
+               class="btn btn-outline-primary">
+                Редактировать
+            </a>
+            <a href="{% url 'tests:test_delete' object.pk %}"
+               class="btn btn-outline-danger">
+                Удалить
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

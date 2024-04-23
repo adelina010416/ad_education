@@ -1,0 +1,34 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">AdEducation</h1>
+        <h2 class="jumbotron-heading">Платформа самообучения для всех</h2>
+        <p class="lead text-muted">Изучайте материалы, проходите тесты, отслеживайте свой прогресс,
+            добавляйте свои уроки и делитесь знаниями.</p>
+        <p class="lead text-muted">Вас ждут:</p>
+        <ul class="list-unstyled">
+            <li class="text-muted">
+                {{ subjects_count }} необходимых предметов, среди которых:
+                <ul class="list-inline">
+                    {% for sub in subjects %}
+                    <li class="list-inline-item ms-4">{{ sub }}</li>
+                    {% endfor %}
+                    <li>и прочее</li>
+                </ul>
+            </li>
+            <li class="text-muted">{{ themes }} актуальных тем</li>
+            <li class="text-muted">{{ lessons }} подробных уроков</li>
+            <li class="text-muted"> {{tests_count}} увлекательных тестов</li>
+        </ul>
+        {% if not user.is_authenticated %}
+        <p class="lead text-muted">Всё это станет Вам доступно сразу после
+            <a href="{% url 'users:register' %}">регистрации</a>!</p>
+        {% endif %}
+    </div>
+</section>
+<hr>
+
+{% endblock %}

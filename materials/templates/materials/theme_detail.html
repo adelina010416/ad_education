@@ -1,0 +1,76 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<section class="text-start mt-4">
+    <div class="row">
+        <div class="col-9">
+            <h1 class="jumbotron-heading">{{ object.title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="jumbotron-heading">{{ object.description }}</h4>
+    </div>
+    <hr>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page"
+               href="{% url 'material:theme_detail' object.pk %}">
+                Уроки
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page"
+               href="{% url 'tests:test_list' object.pk %}">
+                Тесты
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page"
+               href="{% url 'material:theme_comments' object.pk %}">
+                Комментарии к теме
+            </a>
+        </li>
+    </ul>
+    <div class="container mt-4">
+        <table class="table table-success table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col"><h4 class="jumbotron-heading">Уроки:</h4></th>
+                {% if user.is_staff %}
+                <th scope="col"></th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for lesson in lesson_set %}
+            <tr>
+                <td scope="row">
+                    <a href="{% url 'material:lesson_detail' lesson.pk %}"
+                       class="lead nav-link text-dark">
+                        {{ lesson.title }}
+                    </a>
+                </td>
+                {% if user.is_staff %}
+                <td>
+                    {% if lesson.is_published %}
+                    <a href="{% url 'material:set_published_lesson' lesson.pk %}"
+                       class="btn btn-outline-danger">
+                        Снять с публикации
+                    </a>
+                    {% else %}
+                    <a href="{% url 'material:set_published_lesson' lesson.pk %}"
+                       class="btn btn-outline-primary">
+                        Опубликовать
+                    </a>
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

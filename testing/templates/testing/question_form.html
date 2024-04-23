@@ -1,0 +1,62 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="col-12">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="card col-6">
+                <div class="card-header">
+                    Вопрос
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <div class="card-footer">
+                    {% if not object %}
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <img src="{% mediapath 'warning.svg' %}"
+                             width="70"
+                             alt="triangle with equal sides"
+                             srcset="{% mediapath 'warning.svg' %}"/>
+                        <div class="ms-3">
+                            Перед тем, как нажать кнопку "Готово", пожалуйста, убедитесь,
+                            что сохранили все введённые вопросы.
+                            Иначе введённые данные будут утеряны.
+                        </div>
+                    </div>
+                    {% endif %}
+                    <button type="submit" class="p-2 btn btn-outline-success">
+                        Сохранить
+                    </button>
+                    {% if object %}
+                    <a href="{% url 'tests:test_detail' object.test.pk %}"
+                       class="btn btn-outline-secondary p-2">
+                        Отмена
+                    </a>
+                    {% else %}
+                    <a href="{% url 'tests:my_tests' %}" class="btn btn-outline-primary p-2">
+                        Готово
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card col-6">
+                <div class="card-header">
+                    Ответы
+                </div>
+                <div class="card-body">
+                    {{ formset.management_form }}
+                    {% for form in formset.forms %}
+                    {{ form.as_p }}
+                    {% if not forloop.last %}
+                    <hr>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

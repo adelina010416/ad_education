@@ -1,0 +1,49 @@
+{% extends 'materials/menu.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-12">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="card col-6">
+                <div class="card-header">
+                    {% if title %}
+                    {{ title }}
+                    {% else %}
+                    Вход
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        {% if text %}
+                        {{ text }}
+                        {% endif %}
+                    </div>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                {% if title == 'Редактирование профиля' %}
+                <a href="{% url 'users:change_password' %}" class="mb-4 ms-3">Сменить пароль</a>
+                {% endif %}
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-outline-primary">
+                        {% if button %}
+                        {{ button }}
+                        {% else %}
+                        Войти
+                        {% endif %}
+                    </button>
+                    {% if not button %}
+                    <a href="{% url 'users:register' %}"
+                       class="btn btn-outline-secondary">Регистрация
+                    </a>
+                    <a href='{% url "users:recover_password" %}'
+                       class="link-opacity-50-hover ms-2 link-underline-opacity-0 link-dark">
+                        Забыли пароль?
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

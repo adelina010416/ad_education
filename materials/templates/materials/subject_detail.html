@@ -1,0 +1,66 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<section class="text-start mt-4">
+    <div class="row">
+        <div class="col-9">
+            <h1 class="jumbotron-heading">{{ object.name }}</h1>
+        </div>
+        {% if user.is_staff %}
+        <div class="col-2 btn-group">
+            <a href="{% url 'material:subject_update' object.pk %}" class="btn btn-outline-primary btn-lg">
+                Редактировать
+            </a>
+            <a href="{% url 'material:subject_delete' object.pk %}" class="btn btn-outline-danger btn-lg">
+                Удалить
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <h4 class="jumbotron-heading">{{ object.description }}</h4>
+    </div>
+    <hr>
+    <div class="container">
+        <table class="table table-success table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col"><h4 class="jumbotron-heading">Темы:</h4></th>
+                {% if user.is_staff %}
+                <th scope="col"></th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for theme in theme_set %}
+            <tr>
+                <td scope="row">
+                    <a href="{% url 'material:theme_detail' theme.pk %}"
+                       class="lead nav-link text-dark">
+                        {{ theme.title }}
+                    </a>
+                </td>
+                {% if user.is_staff %}
+                <td>
+                    {% if theme.is_published %}
+                    <a href="{% url 'material:set_published_theme' theme.pk %}"
+                       class="btn btn-outline-danger">
+                        Снять с публикации
+                    </a>
+                    {% else %}
+                    <a href="{% url 'material:set_published_theme' theme.pk %}"
+                       class="btn btn-outline-primary">
+                        Опубликовать
+                    </a>
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

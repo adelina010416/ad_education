@@ -1,0 +1,22 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+{% if user.is_staff %}
+<a href="{% url 'material:subject_create' %}" class="btn btn-outline-primary mt-4 mb-4">
+    Добавить предмет
+</a>
+{% endif%}
+{% for object in object_list %}
+<div class="col-3">
+    <div class="d-grid gap-2 mb-3">
+        <a href="{% url 'material:subject_detail' object.pk %}" class="btn btn-outline-success btn-lg">
+            {{ object.name }}
+        </a>
+    </div>
+
+</div>
+
+
+{% endfor %}
+{% endblock %}
