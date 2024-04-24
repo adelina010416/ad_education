@@ -23,5 +23,7 @@ from config import settings
 urlpatterns = [path('admin/', admin.site.urls),
                path('', include('materials.urls', namespace='material')),
                path('users/', include('users.urls', namespace='users')),
-               path('tests/', include('testing.urls', namespace='tests')),
-               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+               path('comments/', include(
+                   'comments.urls', namespace='comments')),
+               ] + static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

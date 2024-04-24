@@ -1,0 +1,99 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<form action="{% url 'comments:my_comments'%}" method="get" class="form-inline mt-2 mt-md-0">
+    <div class="row mt-2 mb-3">
+        <div class="form-check col-2">
+            <input class="form-check-input" type="radio" name="query_object"
+                   id="all-comments" value="all">
+            <label class="form-check-label" for="all-comments">
+                Все комментарии
+            </label>
+        </div>
+        <div class="form-check col-2">
+            <input class="form-check-input" type="radio" name="query_object"
+                   id="comment"  value="text">
+            <label class="form-check-label" for="comment">
+                Поиск по тексту комментария
+            </label>
+        </div>
+        <div class="form-check col-2">
+            <input class="form-check-input" type="radio" name="query_object"
+                   id="theme" value="theme__title">
+            <label class="form-check-label" for="theme">
+                Поиск по названию темы
+            </label>
+        </div>
+        <div class="form-check col-2">
+            <input class="form-check-input" type="radio" name="query_object"
+                   id="lesson" value="lesson__title">
+            <label class="form-check-label" for="lesson">
+                Поиск по названию урока
+            </label>
+        </div>
+        <div class="form-check col-2">
+            <input class="form-check-input" type="radio" name="query_object"
+                   id="test" value="test__title">
+            <label class="form-check-label" for="test">
+                Поиск по названию теста
+            </label>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-outline-success btn-sm" type="submit">Применить</button>
+        </div>
+    </div>
+</form>
+<form action="{% url 'comments:my_comments'%}" method="get" class="form-inline mt-2 mt-md-0">
+    <div class="row">
+        <div class="col-9">
+            <input class="form-control mr-sm-2"
+                   type="text"
+                   name={{search_object}}
+                   placeholder={{search_help}}
+                   aria-label="Search">
+        </div>
+        <div class="col-3">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+        </div>
+    </div>
+</form>
+<div class="container mt-4">
+    {% for object in object_list %}
+    <div class="row">
+        <div class="col-7">
+            {% if object.theme %}
+            <a href="{% url 'comments:theme_comments' object.theme.pk %}" class="nav-link">
+                <strong>Тема: "{{ object.theme.title }}"</strong>
+            </a>
+            {% elif object.lesson %}
+            <a href="{% url 'material:lesson_detail' object.lesson.pk %}" class="nav-link">
+                <strong>Урок: "{{ object.lesson.title }}"</strong>
+            </a>
+            {% elif object.test %}
+            <a href="{% url 'comments:test_comments' object.test.pk %}" class="nav-link">
+                <strong>Тест: "{{ object.test.title }}"</strong>
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-5">
+            <em class="text-secondary">{{ object.date }}</em>
+            <a href="{% url 'comments:comments_update' object.pk %}"
+               class="btn btn-outline-primary btn-sm ms-4">
+                Редактировать
+            </a>
+            <a href="{% url 'comments:comments_delete' object.pk %}"
+               class="btn btn-outline-danger btn-sm ms-1">
+                Удалить
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ object.text }}
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+{% endblock %}

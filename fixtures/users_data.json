@@ -1,0 +1,73 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$2bQrzzK1RTCEFHRi0VowOg$cBUc9+ZP0z/2nC9v4zw6Y6+Ow3Vv/NSYdKQo0LdE2dg=",
+    "last_login": "2024-04-23T21:17:41.095Z",
+    "is_superuser": true,
+    "first_name": "Adelina",
+    "last_name": "Zimina",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-04-18T17:05:42.701Z",
+    "email": "super_user@mail.ru",
+    "phone": null,
+    "city": null,
+    "avatar": "",
+    "verified_password": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$VveqK4OSAx3S9TBNfmebKx$F1CHVCv7fWGOo7ltH1FL7v+xeqsMJ4fLUdv5snh85J4=",
+    "last_login": "2024-04-23T23:09:43.163Z",
+    "is_superuser": false,
+    "first_name": "Аделина",
+    "last_name": "Иванова",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-04-18T23:01:12.915Z",
+    "email": "just_user99@gmail.com",
+    "phone": "3456789",
+    "city": null,
+    "avatar": "users/fonstola.ru_136826.jpg",
+    "verified_password": "F20KH9kl",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$i58YVLuxCV2fD65tPurkQA$Fs6ZJpe1vJgroxxOtAVVGHdYF9B1BPGKh8a8yVzJz3A=",
+    "last_login": "2024-04-24T00:42:34.908Z",
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-04-19T16:44:33Z",
+    "email": "moderator@mail.ru",
+    "phone": null,
+    "city": null,
+    "avatar": "",
+    "verified_password": "vNkaawQK",
+    "groups": [],
+    "user_permissions": [
+      41,
+      33,
+      34,
+      35,
+      36,
+      42,
+      40
+    ]
+  }
+}
+]

@@ -5,29 +5,29 @@
 <section class="text-start mt-4">
     <div class="row">
         <div class="col-9">
-            <h1 class="jumbotron-heading">{{ object.title }}</h1>
+            <h1 class="jumbotron-heading">{{ theme.title }}</h1>
         </div>
     </div>
     <div class="row">
-        <h4 class="jumbotron-heading">{{ object.description }}</h4>
+        <h4 class="jumbotron-heading">{{ theme.description }}</h4>
     </div>
     <hr>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page"
-               href="{% url 'material:theme_detail' object.pk %}">
+            <a class="nav-link" aria-current="page"
+               href="{% url 'material:theme_detail' theme.id %}">
                 Уроки
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" aria-current="page"
-               href="{% url 'material:test_list' object.pk %}">
+            <a class="nav-link active" aria-current="page"
+               href="{% url 'material:test_list' theme.id %}">
                 Тесты
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" aria-current="page"
-               href="{% url 'comments:theme_comments' object.pk %}">
+               href="{% url 'comments:theme_comments' theme.id %}">
                 Комментарии к теме
             </a>
         </li>
@@ -36,36 +36,43 @@
         <table class="table table-success table-striped table-hover">
             <thead>
             <tr>
-                <th scope="col"><h4 class="jumbotron-heading">Уроки:</h4></th>
-                {% if user.is_staff %}
+                <th scope="col"><h4 class="jumbotron-heading">Тесты:</h4></th>
                 <th scope="col"></th>
-                {% endif %}
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            {% for lesson in lesson_set %}
+            {% for object in object_list %}
             <tr>
                 <td scope="row">
-                    <a href="{% url 'material:lesson_detail' lesson.pk %}"
+                    <a href="{% url 'material:test_detail' object.pk %}"
                        class="lead nav-link text-dark">
-                        {{ lesson.title }}
+                        {{ object.title }}
                     </a>
                 </td>
-                {% if user.is_staff %}
+                <td scope="row">
+                    <a href="{% url 'comments:test_comments' object.pk %}"
+                       class="lead nav-link">
+                        Комментарии
+                    </a>
+                </td>
                 <td>
-                    {% if lesson.is_published %}
-                    <a href="{% url 'material:set_published_lesson' lesson.pk %}"
+                    {% if user.is_staff and object.is_published %}
+                    <a href="{% url 'material:test_set_published' object.pk %}"
                        class="btn btn-outline-danger">
                         Снять с публикации
                     </a>
-                    {% else %}
-                    <a href="{% url 'material:set_published_lesson' lesson.pk %}"
+                    {% elif user.is_staff %}
+                    <a href="{% url 'material:test_set_published' object.pk %}"
                        class="btn btn-outline-primary">
                         Опубликовать
                     </a>
                     {% endif %}
+                    <a href="{% url 'material:test_passing' object.pk %}"
+                       class="btn btn-outline-success">
+                        Пройти тест
+                    </a>
                 </td>
-                {% endif %}
             </tr>
             {% endfor %}
             </tbody>

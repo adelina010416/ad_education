@@ -1,10 +1,9 @@
-from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordChangeView
+from django.contrib.auth.views import PasswordResetView, \
+    PasswordResetDoneView, PasswordChangeView
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, DetailView, UpdateView, ListView
+from django.views.generic import CreateView, DetailView, UpdateView
 
 from config import settings
 from users.forms import UserRegisterForm, UserProfileForm
@@ -25,9 +24,12 @@ def verify_view(request):
 
 def confirm_mail(request):
     """Запрос на подтверждение почты после регистрации на сайте"""
-    context = {'title': 'Пожалуйста, подтвердите почту.',
-               'text': 'Для окончания регистрации Вам нужно пройти по ссылке в письме, '
-                       'которое было отправлено Вам на указанный e-mail.'}
+    context = {
+        'title': 'Пожалуйста, подтвердите почту.',
+        'text': 'Для окончания регистрации Вам нужно пройти по '
+                'ссылке в письме, которое было отправлено Вам '
+                'на указанный e-mail.'
+    }
     return render(request, 'users/information.html', context)
 
 
@@ -39,16 +41,22 @@ def password_changed(request):
 
 def wrong_mail(request):
     """Сообщение о неверно введённом адресе почты при восстановлении пароля"""
-    context = {'title': 'Пользователь с указанной почтой не найден',
-               'text': 'Пожалуйста, проверьте корректность введённой почты, либо зарегистрируйтесь, '
-                       'используя указанную почту.'}
+    context = {
+        'title': 'Пользователь с указанной почтой не найден',
+        'text': 'Пожалуйста, проверьте корректность '
+                'введённой почты, либо зарегистрируйтесь, '
+                'используя указанную почту.'
+    }
     return render(request, 'users/information.html', context)
 
 
 def login_fail(request):
-    context = {'title': 'Действие недоступно',
-               'text': 'Чтобы пользоваться всеми возможностями сервиса, '
-                       'пожалуйста, войдите в свою учётную запись или зарегистрируйтесь.'}
+    context = {
+        'title': 'Действие недоступно',
+        'text': 'Чтобы пользоваться всеми возможностями сервиса, '
+                'пожалуйста, войдите в свою учётную '
+                'запись или зарегистрируйтесь.'
+    }
     return render(request, 'users/information.html', context)
 
 
@@ -113,12 +121,17 @@ class UserPasswordResetView(PasswordResetView):
 
 class UserPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'users/information.html'
-    extra_context = {'title': 'Письмо с инструкциями по восстановлению пароля отправлено',
-                     'text': 'Мы отправили вам письмо с новым паролем на указанный адрес'
-                             ' электронной почты (если в нашей базе данных есть такой адрес). '
-                             'Вы должны получить ее в ближайшее время. Если вы не получили письмо, пожалуйста, '
-                             'убедитесь, что вы ввели почту, с которой Вы зарегистрировались, '
-                             'и проверьте папку со спамом.'}
+    extra_context = {
+        'title': 'Письмо с инструкциями по восстановлению пароля отправлено',
+        'text': 'Мы отправили вам письмо с новым паролем на указанный адрес'
+                ' электронной почты '
+                '(если в нашей базе данных есть такой адрес). '
+                'Вы должны получить ее в ближайшее время. '
+                'Если вы не получили письмо, пожалуйста, '
+                'убедитесь, что вы ввели почту, '
+                'с которой Вы зарегистрировались, '
+                'и проверьте папку со спамом.'
+    }
 
 
 class UserPasswordChangeView(PasswordChangeView):

@@ -1,0 +1,75 @@
+{% extends 'materials/menu.html' %}
+{% load my_tags %}
+
+{% block content %}
+<section class="text-start mt-4">
+    <div class="row">
+        <div class="col-9">
+            <h1 class="jumbotron-heading">{{ theme.title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="jumbotron-heading">{{ theme.description }}</h4>
+    </div>
+    <hr>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page"
+               href="{% url 'material:theme_detail' theme.id %}">
+                Уроки
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page"
+               href="{% url 'material:test_list' theme.id %}">
+                Тесты
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page"
+               href="{% url 'comments:theme_comments' theme.id %}">
+                Комментарии к теме
+            </a>
+        </li>
+    </ul>
+    <div class="container mt-4">
+        {% for object in object_list %}
+        <div class="row">
+            <div class="col-9">
+                {% if object.user.first_name or object.user.last.name %}
+                <strong>{{ object.user.last_name }} {{ object.user.first_name }}</strong>
+                {% else %}
+                <strong>Аноним</strong>
+                {% endif %}
+            </div>
+            <div class="col-3">
+                <em class="text-secondary">{{ object.date }}</em>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ object.text }}
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                {% for field in form %}
+                <div class="form-group">
+                    <div class="py-3">
+                        <strong>Ваш комментарий:</strong>
+                    </div>
+                    <div>{{field}}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="mt-3 mb-4 btn btn-outline-success">
+                Отправить
+            </button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

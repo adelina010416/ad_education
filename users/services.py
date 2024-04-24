@@ -16,7 +16,9 @@ def greeting_mail(verified_password, email):
     send_mail(
         subject='Поздравляем с регистрацией!',
         message=f'Чтобы завершить регистрацию, '
-                f'перейдите по ссылке: http://127.0.0.1:8000/users/verifying?code={verified_password}',
+                f'перейдите по ссылке: '
+                f'http://127.0.0.1:8000/users/verifying?code='
+                f'{verified_password}',
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[email]
     )

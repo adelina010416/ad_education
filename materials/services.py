@@ -4,17 +4,19 @@ import pytz
 from django.core import exceptions
 
 from config.settings import TIME_ZONE
-from testing.models import Result
+from materials.models import Result
 
 
 def check_published(obj, user):
-    """Проверяет, опубликован ли передаваемый урок/тема
-    и является ли пользователь владельцем урока/темы.
+    """
+    Проверяет, опубликован ли передаваемый материал (урок/тема/тест)
+    и является ли пользователь владельцем материала.
     Вызывает ошибку, если пользователь, не являющийся модератором
-    или владельцем урока/темы, пытается получить к нему доступ для просмотра.
-    Возвращает урок/тему, если всё ок.
-    Args: obj: экземпляр класса Lesson или Theme
-          user: экземпляр класса User"""
+    или владельцем материала, пытается получить к нему доступ для просмотра.
+    Возвращает материал, если проверка пройдена успешно.
+    :arg
+    obj -- экземпляр класса Lesson / Theme / TestPaper
+    user -- экземпляр класса User"""
     is_owner = obj.owner == user
     if not obj.is_published and not user.is_staff and not is_owner:
         raise exceptions.PermissionDenied
@@ -22,6 +24,14 @@ def check_published(obj, user):
 
 
 def create_dict(response):
+    """
+    Меняет тип ключей в словаре с str на int
+    и тип значений с str на bool.
+    :arg
+    response -- словарь типа {'int': 'bool'}
+    :return
+    user_dict -- словарь типа {int: bool}
+    """
     user_dict = {}
     for key, val in response.items():
         key = int(key)
@@ -34,6 +44,16 @@ def create_dict(response):
 
 
 def create_result(test, user_results, user):
+    """
+    Создаёт экземпляр класса Result
+    для передаваемых пользователя и результатов
+    :arg
+    test -- экземпляр класса TestPaper
+    user_results -- словарь с ответами пользователя типа {int: bool}
+    user -- экземпляр класса User
+    :return
+    result -- экземпляр класса Result
+    """
     all_answers = []
     for question in test.question_set.all():
         all_answers += list(question.answer_set.all())
@@ -54,6 +74,19 @@ def create_result(test, user_results, user):
 
 
 def get_user_answer_dict(test, user_answer):
+    """
+    Создаёт список всех экземпляров класса Answer,
+    относящихся к передаваемому экземпляру класса TestPaper.
+    Добавляет к словарю экземпляра ключ 'user_answer'
+    с Bool значением (True - если пользователь выбирал этот ответ,
+    False - если не выбирал).
+    :arg
+    test -- экземпляр класса TestPaper
+    user_answer -- словарь с ответами пользователя типа {'int': 'bool'}
+    :return
+    all_answers -- список словарей с экземплярами класса Answer
+        и дополнительным ключом
+    """
     all_questions = test.question_set.all()
     user_answer = create_dict(user_answer)
     all_answers = []

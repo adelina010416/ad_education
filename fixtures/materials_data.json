@@ -1,0 +1,596 @@
+[
+{
+  "model": "materials.subject",
+  "pk": 1,
+  "fields": {
+    "name": "Математика",
+    "description": "Какое-то описание"
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 2,
+  "fields": {
+    "name": "английский язык",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 3,
+  "fields": {
+    "name": "литература",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 4,
+  "fields": {
+    "name": "физика",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 5,
+  "fields": {
+    "name": "химия",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 6,
+  "fields": {
+    "name": "информатика",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 7,
+  "fields": {
+    "name": "биолгия",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 8,
+  "fields": {
+    "name": "история",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 9,
+  "fields": {
+    "name": "География",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 10,
+  "fields": {
+    "name": "Обществознание",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 13,
+  "fields": {
+    "name": "Python",
+    "description": ""
+  }
+},
+{
+  "model": "materials.subject",
+  "pk": 17,
+  "fields": {
+    "name": "Русский язык",
+    "description": ""
+  }
+},
+{
+  "model": "materials.theme",
+  "pk": 1,
+  "fields": {
+    "title": "Округление с недостатком",
+    "subject": 1,
+    "description": "",
+    "owner": 1,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.theme",
+  "pk": 2,
+  "fields": {
+    "title": "Округление с избытком",
+    "subject": 1,
+    "description": "",
+    "owner": 1,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.theme",
+  "pk": 3,
+  "fields": {
+    "title": "Анализ утверждений",
+    "subject": 1,
+    "description": "",
+    "owner": 1,
+    "is_published": false
+  }
+},
+{
+  "model": "materials.theme",
+  "pk": 6,
+  "fields": {
+    "title": "Django",
+    "subject": 13,
+    "description": "Django — это высокоуровневый Python веб-фреймворк, который позволяет быстро создавать безопасные и поддерживаемые веб-сайты.",
+    "owner": 2,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.theme",
+  "pk": 9,
+  "fields": {
+    "title": "Dictionaries",
+    "subject": 13,
+    "description": "",
+    "owner": 2,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.theme",
+  "pk": 12,
+  "fields": {
+    "title": "Орфография",
+    "subject": 17,
+    "description": "",
+    "owner": 2,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.theme",
+  "pk": 13,
+  "fields": {
+    "title": "Грамматика",
+    "subject": 2,
+    "description": "",
+    "owner": 2,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.theme",
+  "pk": 14,
+  "fields": {
+    "title": "Условные предложения",
+    "subject": 2,
+    "description": "",
+    "owner": 3,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.lesson",
+  "pk": 3,
+  "fields": {
+    "title": "Python Dictionaries",
+    "theme": 9,
+    "description": "Какое-то описание (что будет изучаться в этом уроке)",
+    "owner": 2,
+    "link_video": "https://youtu.be/daefaLgNkw0?si=zHgYzmXGlhcy63J7",
+    "material": "какой-то материал (вместо загрузки файла или дополнительно к материалу из файла)",
+    "file": "lessons/dict.docx",
+    "is_published": true
+  }
+},
+{
+  "model": "materials.lesson",
+  "pk": 16,
+  "fields": {
+    "title": "Урок 1",
+    "theme": 1,
+    "description": "",
+    "owner": 2,
+    "link_video": null,
+    "material": "",
+    "file": "",
+    "is_published": false
+  }
+},
+{
+  "model": "materials.lesson",
+  "pk": 18,
+  "fields": {
+    "title": "Условные предложения грамматика",
+    "theme": 14,
+    "description": "",
+    "owner": 3,
+    "link_video": "https://www.youtube.com/watch?v=4H3-2smRJJY",
+    "material": "",
+    "file": "lessons/Conditional_clause.docx",
+    "is_published": true
+  }
+},
+{
+  "model": "materials.testpaper",
+  "pk": 11,
+  "fields": {
+    "title": "Орфография тест",
+    "theme": 12,
+    "description": "",
+    "owner": 2,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.testpaper",
+  "pk": 12,
+  "fields": {
+    "title": "Tenses",
+    "theme": 13,
+    "description": "Выберите вариант ответа с правильной грамматической формой",
+    "owner": 2,
+    "is_published": true
+  }
+},
+{
+  "model": "materials.question",
+  "pk": 6,
+  "fields": {
+    "question_text": "question2",
+    "test": null
+  }
+},
+{
+  "model": "materials.question",
+  "pk": 7,
+  "fields": {
+    "question_text": "question3",
+    "test": null
+  }
+},
+{
+  "model": "materials.question",
+  "pk": 14,
+  "fields": {
+    "question_text": "Укажите варианты ответов, в которых верно выделена буква, обозначающая ударный гласный звук.",
+    "test": 11
+  }
+},
+{
+  "model": "materials.question",
+  "pk": 15,
+  "fields": {
+    "question_text": "В каком из выделенных ниже слов допущена ошибка в образовании формы слова?",
+    "test": 11
+  }
+},
+{
+  "model": "materials.question",
+  "pk": 16,
+  "fields": {
+    "question_text": "Укажите варианты ответов, в которых во всех словах одного ряда пропущена одна и та же буква.",
+    "test": 11
+  }
+},
+{
+  "model": "materials.question",
+  "pk": 17,
+  "fields": {
+    "question_text": "It was the day of the city marathon. Cindy __________________ for it for more than six months and was now ready. Unfortunately, the weather was not the best for the occasion.",
+    "test": 12
+  }
+},
+{
+  "model": "materials.question",
+  "pk": 18,
+  "fields": {
+    "question_text": "What do you know about holidays in the USA? They can be divided into two groups: national and popular holidays. There __________________ ten national holidays in the USA.",
+    "test": 12
+  }
+},
+{
+  "model": "materials.question",
+  "pk": 19,
+  "fields": {
+    "question_text": "In 1896, Said Khalid seized power in Zanzibar. A British fleet soon arrived at the port of Zanzibar and ordered him out of the royal palace. Khalid refused to leave. At 9:02 on the morning of August 27, British ships started a fire on the palace, a war between Britain and Zanzibar__________.",
+    "test": 12
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 5,
+  "fields": {
+    "answer_text": "answer2.1 F",
+    "is_correct": false,
+    "question": 6
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 6,
+  "fields": {
+    "answer_text": "answer2.2 F",
+    "is_correct": false,
+    "question": 6
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 7,
+  "fields": {
+    "answer_text": "answer2.3 F",
+    "is_correct": false,
+    "question": 6
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 8,
+  "fields": {
+    "answer_text": "answer2.4 T",
+    "is_correct": true,
+    "question": 6
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 33,
+  "fields": {
+    "answer_text": "кашлянУть",
+    "is_correct": false,
+    "question": 14
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 34,
+  "fields": {
+    "answer_text": "прозорлИва",
+    "is_correct": true,
+    "question": 14
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 35,
+  "fields": {
+    "answer_text": "обОдриться",
+    "is_correct": false,
+    "question": 14
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 36,
+  "fields": {
+    "answer_text": "донельзЯ",
+    "is_correct": false,
+    "question": 14
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 37,
+  "fields": {
+    "answer_text": "ПОМАШИТЕ рукой",
+    "is_correct": false,
+    "question": 15
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 38,
+  "fields": {
+    "answer_text": "шесть БЛЮДЕЦ",
+    "is_correct": false,
+    "question": 15
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 39,
+  "fields": {
+    "answer_text": "НАИЛУЧШИЙ способ",
+    "is_correct": false,
+    "question": 15
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 40,
+  "fields": {
+    "answer_text": "занавесить ТЮЛЬЮ",
+    "is_correct": true,
+    "question": 15
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 41,
+  "fields": {
+    "answer_text": "пл..вник, п..ркет, вл..жения",
+    "is_correct": false,
+    "question": 16
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 42,
+  "fields": {
+    "answer_text": "г..рняцкий, погл..щение, об..няние",
+    "is_correct": true,
+    "question": 16
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 43,
+  "fields": {
+    "answer_text": "ч..столюбие, выч..тание, зан..мательный",
+    "is_correct": false,
+    "question": 16
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 44,
+  "fields": {
+    "answer_text": "отв..рить (дверь), подск..чить, зак..снелый",
+    "is_correct": true,
+    "question": 16
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 45,
+  "fields": {
+    "answer_text": "had been training",
+    "is_correct": true,
+    "question": 17
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 46,
+  "fields": {
+    "answer_text": "had trained",
+    "is_correct": true,
+    "question": 17
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 47,
+  "fields": {
+    "answer_text": "trained",
+    "is_correct": false,
+    "question": 17
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 48,
+  "fields": {
+    "answer_text": "trains",
+    "is_correct": false,
+    "question": 17
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 49,
+  "fields": {
+    "answer_text": "am",
+    "is_correct": false,
+    "question": 18
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 50,
+  "fields": {
+    "answer_text": "is",
+    "is_correct": false,
+    "question": 18
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 51,
+  "fields": {
+    "answer_text": "are",
+    "is_correct": true,
+    "question": 18
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 52,
+  "fields": {
+    "answer_text": "be",
+    "is_correct": false,
+    "question": 18
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 53,
+  "fields": {
+    "answer_text": "begining",
+    "is_correct": false,
+    "question": 19
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 54,
+  "fields": {
+    "answer_text": "begun",
+    "is_correct": false,
+    "question": 19
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 55,
+  "fields": {
+    "answer_text": "begin",
+    "is_correct": false,
+    "question": 19
+  }
+},
+{
+  "model": "materials.answer",
+  "pk": 56,
+  "fields": {
+    "answer_text": "began",
+    "is_correct": true,
+    "question": 19
+  }
+},
+{
+  "model": "materials.result",
+  "pk": 8,
+  "fields": {
+    "test": 12,
+    "user": 2,
+    "percentage": 50,
+    "date": "2024-04-22T23:39:51.318Z"
+  }
+},
+{
+  "model": "materials.result",
+  "pk": 9,
+  "fields": {
+    "test": 12,
+    "user": 2,
+    "percentage": 50,
+    "date": "2024-04-23T13:31:50.186Z"
+  }
+},
+{
+  "model": "materials.result",
+  "pk": 10,
+  "fields": {
+    "test": 12,
+    "user": 2,
+    "percentage": 25,
+    "date": "2024-04-23T15:25:22.952Z"
+  }
+}
+]

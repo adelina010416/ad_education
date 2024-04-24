@@ -1,0 +1,38 @@
+[
+{
+  "model": "comments.comment",
+  "pk": 1,
+  "fields": {
+    "text": "Добавьте, пожалуйста, урок по времени Present Perfect Continuous!",
+    "user": 2,
+    "theme": 13,
+    "lesson": null,
+    "test": null,
+    "date": "2024-04-23T13:32:34.054Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 2,
+  "fields": {
+    "text": "А можно поподробней по поводу циклов со словарями?",
+    "user": 2,
+    "theme": null,
+    "lesson": 3,
+    "test": null,
+    "date": "2024-04-23T13:33:36.638Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 3,
+  "fields": {
+    "text": "А почему в 3м вопросе два правильных ответа???",
+    "user": 2,
+    "theme": null,
+    "lesson": null,
+    "test": 12,
+    "date": "2024-04-23T15:39:51.259Z"
+  }
+}
+]

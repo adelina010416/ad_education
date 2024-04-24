@@ -1,0 +1,31 @@
+{% extends 'materials/menu.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-12">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="card col-6">
+                <div class="card-header">
+                    Тест
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="p-2 btn btn-outline-primary">
+                        {% if object %}
+                            Готово
+                        {% else %}
+                            Добавить вопросы
+                        {% endif %}
+                    </button>
+                    <a href="{% url 'material:my_tests' %}" class="p-2 btn btn-outline-secondary">
+                        Отмена
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
